@@ -50,7 +50,11 @@ const Navbar = () => {
             <div className="py-7 text-lg">
                 <div className="container px-4 mx-auto">
                     <div className="flex justify-between items-center">
-                        <img src={logo} alt='hoobank' className='w-[124px] h-[32px] block'/>
+                    <div className="flex items-center flex-shrink-0 text-primary mr-6">
+                        <img src={logo} alt='hoobank' className='h-8'/>
+                        <span className="font-bold text-2xl tracking-tight font-['Caveat']">RAM Solutions</span>
+                    </div>
+                        
                         <div className="hidden lg:block text-center">
                             <ul className='flex space-x-7'>
                                 {navLinks.map((item) => (

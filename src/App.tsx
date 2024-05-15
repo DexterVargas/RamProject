@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import Loader from './common/Loader';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Platforms from './components/Platforms';
+import Solutions from './pages/Solutions';
+import Cta from './components/CTA';
+
 
 
 
@@ -18,9 +23,10 @@ function App() {
     <>
     
       <Navbar/>
-
-      
-
+      <Home/>
+      <Platforms/>
+      <Solutions/>
+      <Cta/>
     </>
   )
 }
