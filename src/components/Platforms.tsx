@@ -29,11 +29,11 @@ const contents = [
 const style = "flex justify-center items-center";
 const Platforms = () => {
   return (
-    <section className={`${style} my-4`}>
+    <section className={`${style} my-4 mb-20`}>
       <div className={`${style} flex-wrap container px-4 mx-auto`}>
         {contents.map((content) => (
           <div key={content.id} className={`flex-1 ${style} sm:min-w-[192px] min-w-[120px]`}>
-            <a href={content.link} target="_blank" title={`Explore virtual assistant solutions at ${content.id}`}>
+            <a href={content.link} target="_blank" title={`Explore our virtual assistant solutions at ${content.id}`}>
               <img
                 src={content.logo}
                 alt='content'

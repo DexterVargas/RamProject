@@ -26,6 +26,12 @@ const Navbar = () => {
         width: typeof window !== "undefined" ? window.innerWidth : 0,
     });
 
+    const handleToggleSelection = (id:string) => {
+        console.log(id)
+        setActiveName(id);
+        setToggle(!toggle);
+    }
+
     const handleResize = () => {
         if (typeof window !== "undefined") {
             setDimensions({
@@ -46,7 +52,7 @@ const Navbar = () => {
 
     // **Render
     return (
-        <nav>
+        <nav id='home'>
             <div className="py-7 text-lg">
                 <div className="container px-4 mx-auto">
                     <div className="flex justify-between items-center">
@@ -81,7 +87,8 @@ const Navbar = () => {
             {/*  Mobile menu */}
             {!!toggle && (
                 <div className="">
-                    <div className="h-screen w-screen z-[999] top-0 fixed bg-black/50" onClick={()=>setToggle(!toggle)}></div>
+                    <div className="h-screen w-screen z-[999] top-0 fixed bg-black/50" onClick={()=>setToggle(!toggle)}>
+                    </div>
                     <div className="bg-white w-[380px] top-0 right-0 z-[999] h-screen fixed animate-slide-in-right">
                         <div className="h-14 px-10 border-b flex items-center">
                             <button className="flex items-center space-x-1" onClick={()=>setToggle(!toggle)}>
@@ -96,7 +103,7 @@ const Navbar = () => {
                                         <a 
                                             href={`#${item.id}`} 
                                             className="flex items-center px-4 py-2"
-                                            onClick={()=>{setActiveName(item.id)}}>
+                                            onClick={()=>{handleToggleSelection(item.id)}}>
 
                                             <span>{item.title}</span>
                                         </a>

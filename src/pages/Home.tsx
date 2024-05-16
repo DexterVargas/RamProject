@@ -20,21 +20,14 @@ const content = {
 const Home = () => {
   return (
     <header>
-        <section className="py-20" id='home'>
+        <section className="py-16">
             <div className="container px-4 mx-auto">
                 <div className="lg:flex justify-between items-center">
-
-
-                {/* <div className='flex flex-row justify-between items-center w-full'> */}
-                    
-           
-
 
                     <div className="lg:w-5/12 mb-10 lg:mb-0">
                         
                         {content.text.heading && <Heading text={content.text.heading} />}
                         {content.text.subHeading && (
-                            // <h1 className="text-4xl lg:text-5xl font-bold text-heading mb-7">{content.text.subHeading}</h1>
                             <>
                                 <h1 className='flex-1 text-4xl lg:text-5xl font-bold text-heading'>
                                     { content.text.subHeading.text1 } <br className='sm:block hidden'/> {" "}

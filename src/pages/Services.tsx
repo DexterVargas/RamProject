@@ -2,57 +2,57 @@ import Heading from "../components/Heading";
 
 const content = {
     text: {
-        subTitle: "Our Solutions",
+        subTitle: "Our Services",
         title: "What We Can Do For You",
         desc: "Take care of tedious tasks for yourself or your business with these professional virtual assistants. We provides a multitude of online services to businesses and entrepreneurs from a remote location.",
     },
-    solutions: [
+    services: [
         {
-            icon:'/solution/socialmedia.webp',
+            icon:'/service/socialmedia.webp',
             service:'Social Media Management',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/digitalmarketing.webp',
+            icon:'/service/digitalmarketing.webp',
             service:'Digital Marketing',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/graphicdesign.webp',
+            icon:'/service/graphicdesign.webp',
             service:'Graphic Design',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/dataentry.webp',
+            icon:'/service/dataentry.webp',
             service:'Data Entry',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/creativewriting.webp',
+            icon:'/service/creativewriting.webp',
             service:'Creative Writing',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/admin.webp',
+            icon:'/service/admin.webp',
             service:'Admin/ Management',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/developer.webp',
+            icon:'/service/developer.webp',
             service:'Developer',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
         {
-            icon:'/solution/bookkeeping.webp',
+            icon:'/service/bookkeeping.webp',
             service:'Bookkeeping',
             desc:'Administrative tasks to run your business efficiently including documentation, research, email and calendar management, MS Office ...'
         },
     ],
 };
 
-const Solutions = () => {
+const Services = () => {
     return (
-        <section className="py-32 bg-light overflow-x-hidden">
+        <section className="py-16 bg-light overflow-x-hidden" id="services">
             <div className="container px-4 mx-auto">
                 {/* <div className="lg:flex space-x-2 justify-between">
                     <div className="lg:w-6/12 relative mb-10 lg:mb-0 z-10 before:content-[''] before:absolute before:w-screen before:right-1/2 before:rounded-tr-[200px] before:z-[-1] before:rounded-br-3xl before:py-28 before:-top-20 before:bg-white before:-bottom-20">
@@ -139,20 +139,19 @@ const Solutions = () => {
                 <div className="text-center">
                     <Heading text={content.text.subTitle} />
                     <h2 className="text-heading text-2xl lg:text-4xl font-bold mb-5">{content.text.title}</h2>
-                    <p className="max-w-xl mx-auto mt-2 text-body">{content.text.desc}</p>
+                    <p className="max-w-xl mx-auto mt-2 text-body text-base leading-relaxed">{content.text.desc}</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-10 mt-10">
-                { content.solutions.map((solution) => (
-
-                
-                    <div className="flex gap-4 items-start">
+                { content.services.map((serviceItem) => (
+ 
+                    <div className="flex gap-4 items-center" key={serviceItem.service}>
                         <span className="bg-indigo-100 p-3 rounded-full drop-shadow-md">
-                            <img src={solution.icon} alt={solution.service} className="w-16"/>
+                            <img src={serviceItem.icon} alt={serviceItem.service} className="w-16"/>
                         </span>
                         <div>
-                            <h3 className="font-semibold text-xl text-primary">{solution.service}</h3>
-                            <p className="mt-1 text-body"> {solution.desc}</p>
+                            <h3 className="font-semibold text-xl text-primary">{serviceItem.service}</h3>
+                            <p className="mt-1 text-body text-base leading-relaxed"> {serviceItem.desc}</p>
                         </div>
                     </div>
                 ))}
@@ -164,4 +163,4 @@ const Solutions = () => {
     );
 }
 
-export default Solutions
+export default Services
