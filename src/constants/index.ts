@@ -29,3 +29,9 @@ export const navLinks:Links[] = [
         title: "Careers",
     },
 ];
+
+export const pageTitle = {
+    title : 'RAM Solutions',
+    subTitle: 'RAM Virtual Solutions',
+    otherTitle: ''
+}

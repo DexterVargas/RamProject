@@ -89,7 +89,7 @@ const style = "flex justify-center items-center";
 const Clients = () => {
   return (
     <>
-    <section className="py-16 bg-light overflow-x-hidden" id="client">
+    <section className="py-16 bg-light overflow-x-hidden px-4" id="client">
         <div className="container max-md:max-w-md mx-auto ">    
             <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6">
                 <div className="max-md:order-1 max-md:text-center">
@@ -102,7 +102,7 @@ const Clients = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" className="fill-green-500 shrink-0" viewBox="0 0 24 24">
                                     <path d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z" data-original="#000000"></path>
                                 </svg>
-                                <h6 className="font-base ml-4 text-primary">
+                                <h6 className="line-clamp-1 sm:line-clamp-none ml-4 text-primary text-left">
                                     { item }
                                 </h6>
                             </div> 

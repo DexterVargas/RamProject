@@ -1,8 +1,9 @@
 import Button from '../common/button';
 import Heading from '../components/Heading';
+import { pageTitle } from '../constants';
 const content = {
   text: {
-      heading: "Welcome to Ram Virtual Solutions",
+      heading: `Welcome to ${pageTitle.subTitle}`,
       subHeading: {'text1': 'Finally a,', 'text2':'Virtual Assistant','text3':'You can trust!'},
       description:
           "We are a marketing agency that focuses on strategy and design. We've got the right solution for your organization. Delegate your tedious daily task & 10x your productivity with virtual assistant today!",
@@ -10,7 +11,7 @@ const content = {
   images: {
       img1: "image2.webp",
       img2: "image12.webp",
-      img3: "image13.webp",
+      img3: "image6.webp",
       img4: "image14.webp",
       img5: "image15.webp",
   },

@@ -7,6 +7,9 @@ import Solutions from './pages/Services';
 import Cta from './components/CTA';
 import Clients from './pages/Clients';
 import About from './pages/About';
+import Contact from './pages/Contact';
+import Footer from './components/Footer';
+import Careers from './pages/Careers';
 
 
 
@@ -58,6 +61,9 @@ function App() {
       <Cta/>
       <Clients/>
       <About/>
+      <Contact/>
+      <Careers/>
+      <Footer/>
       {/* <!-- Back to top button --> */}
       {showButton && (
         <div className="bg-light">

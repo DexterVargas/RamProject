@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { logo } from '../assets/index'
-import { navLinks } from '../constants/index'
+import { navLinks, pageTitle } from '../constants/index'
 
 
 const BurgerIcon = () => (
@@ -57,8 +56,11 @@ const Navbar = () => {
                 <div className="container px-4 mx-auto">
                     <div className="flex justify-between items-center">
                     <div className="flex items-center flex-shrink-0 text-primary mr-6">
-                        <img src={logo} alt='hoobank' className='h-8'/>
-                        <span className="font-bold text-2xl tracking-tight font-['Caveat']">RAM Solutions</span>
+                        <a href="#home" title={`Welcome to ${pageTitle.subTitle}`} className='inline-flex'>
+                          <img src='ram.svg' alt={pageTitle.title} className='h-8'/>
+                            <span className="font-bold text-2xl tracking-tight font-['Caveat']">{pageTitle.title}</span>  
+                        </a>
+                        
                     </div>
                         
                         <div className="hidden lg:block text-center">
@@ -114,29 +116,6 @@ const Navbar = () => {
                     </div>
                 </div>
             )}
-        
-            {/* <div className='sm:hidden flex flex-1 justify-end items-center'>
-                <img
-                src={toggle ? close : menu}
-                alt='menu'
-                className='w-[28px] h-[28px] object-contain'
-                onClick={() => setToggle((previous) => !previous)}
-                />
-                <div className={`${toggle ? 'flex' : 'hidden'} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
-                    <ul className='list-none flex flex-col justify-end items-center flex-1'>
-                        {navLinks.map((nav, i) => (
-                        <li 
-                            key={nav.id}
-                            className={`font-poppins font-normal cursor-pointer text-[16px] ${i === navLinks.length - 1 ? 'mr-0' : 'mb-4'} text-white mr-10`}
-                        >
-                            <a href={`#${nav.id}`}>
-                            {nav.title} 
-                            </a>
-                        </li>        
-                        ))}
-                    </ul>
-                </div>
-            </div> */}
         </nav>
     )
 }
