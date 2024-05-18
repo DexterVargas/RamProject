@@ -10,7 +10,7 @@ const Cta = () => {
                 </p>
             </div>
             <div className={`flex justify-center items-center sm:ml-10 ml-0`}>
-                <Button variant="primary" text="Get Started" />
+                <Button variant="primary" text="Get Started" link='howitworks' />
             </div>
 
         </section>

@@ -10,7 +10,7 @@ const content = {
 }
 const About = () => {
   return (
-    <section className="text-body container max-md:max-w-md mx-auto px-4 mt-16" id='about'>
+    <section className="text-body container max-md:max-w-md mx-auto px-4 py-6" id='about'>
         <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6">
             <div className="max-md:order-1 max-md:text-center z-50 relative">
 

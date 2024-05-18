@@ -29,7 +29,7 @@ const contents = [
 const style = "flex justify-center items-center";
 const Platforms = () => {
   return (
-    <section className={`${style} my-4 mb-20`}>
+    <section className={`${style} my-4 mb-10`}>
       <div className={`${style} flex-wrap container px-4 mx-auto`}>
         {contents.map((content) => (
           <div key={content.id} className={`flex-1 ${style} sm:min-w-[192px] min-w-[120px]`}>
