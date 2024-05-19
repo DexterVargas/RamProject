@@ -59,11 +59,11 @@ const Contact = () => {
             }
         
             setErrors(errors);
-
+  
             const data = {
-                service_id: 'service_w34fzno',
-                template_id: 'template_w3drny8',
-                user_id: 'RxRUNK7pj_qOjv4fV',
+                service_id: import.meta.env.VITE_APP_SERVICE_ID,
+                template_id: import.meta.env.VITE_APP_TEMPLATE_ID,
+                user_id: import.meta.env.VITE_APP_USER_ID,
                 template_params: formData
             };
             if (!errors.name && !errors.email && !errors.subject && !errors.message) {
@@ -74,7 +74,9 @@ const Contact = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                    
                 })
+                console.log(data)
                 setFormData({ name: '', email: '',subject:'', message:''})
                 setIsSuccess(true);
 
