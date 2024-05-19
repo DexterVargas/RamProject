@@ -21,133 +21,129 @@ const content = {
 
 const Home = () => {
   return (
-    <header>
+    <section data-section className="pt-6 " id='home'>
 
-        <section className="pt-6 ">
+        <div className="container px-4 mx-auto">
 
-            <div className="container px-4 mx-auto">
+            <div className="lg:flex justify-between items-center">
 
-                <div className="lg:flex justify-between items-center">
+                <div className="lg:w-5/12 mb-10 lg:mb-0">
+                    
+                    {content.text.heading && <Heading text={content.text.heading} />}
 
-                    <div className="lg:w-5/12 mb-10 lg:mb-0">
-                        
-                        {content.text.heading && <Heading text={content.text.heading} />}
+                    {content.text.subHeading && (
+                        <>
+                            <h1 className='flex-1 text-4xl lg:text-5xl font-bold text-heading'>
 
-                        {content.text.subHeading && (
-                            <>
-                                <h1 className='flex-1 text-4xl lg:text-5xl font-bold text-heading'>
+                                { content.text.subHeading.text1 } 
+                                <br className='sm:block hidden'/> 
+                                {" "}
 
-                                    { content.text.subHeading.text1 } 
-                                    <br className='sm:block hidden'/> 
-                                    {" "}
+                                <span className="bg-gradient-to-r from-indigo-500 via-blue-300 to-indigo-500 text-nowrap text-transparent bg-clip-text font-['Caveat'] px-2">
+                                    { content.text.subHeading.text2 }
+                                </span> 
+                                {" "}
+                                
+                            </h1>
+                            <h1 className='text-4xl lg:text-5xl font-bold text-heading w-full mb-7'>
+                                { content.text.subHeading.text3 }
+                            </h1>
+                        </>
+                    )}
 
-                                    <span className="bg-gradient-to-r from-indigo-500 via-blue-300 to-indigo-500 text-nowrap text-transparent bg-clip-text font-['Caveat'] px-2">
-                                        { content.text.subHeading.text2 }
-                                    </span> 
-                                    {" "}
-                                    
-                                </h1>
-                                <h1 className='text-4xl lg:text-5xl font-bold text-heading w-full mb-7'>
-                                    { content.text.subHeading.text3 }
-                                </h1>
-                            </>
-                        )}
+                    { content.text.description && 
+                        <p className="leading-relaxed text-body mb-10">
+                            { content.text.description}
+                        </p>
+                    }
 
-                        { content.text.description && 
-                            <p className="leading-relaxed text-body mb-10">
-                                { content.text.description}
-                            </p>
-                        }
+                    <div className="flex space-x-3">
+                        <Button variant="primary" text="Get Started" link='about'/>
+                        <Button variant="secondary" text="How it works ?" link='howitworks'/>
+                    </div>
 
-                        <div className="flex space-x-3">
-                            <Button variant="primary" text="Get Started" link='about'/>
-                            <Button variant="secondary" text="How it works ?" link='howitworks'/>
+                </div>
+
+                <div className="lg:w-6/12 space-y-2 scale-75">
+
+                    <div className="flex space-x-2 items-stretch">
+
+                        <div className="w-8/12">
+
+                            { content.images.img1 && (
+                                <img
+                                    src={content.images.img1}
+                                    alt="img1"
+                                    width={397}
+                                    height={406}
+                                    className="object-cover h-full w-full rounded-2xl "
+                                />
+                            )}
+
                         </div>
+
+                        <div className="w-4/12 self-end space-y-2">
+
+                            <div className="grid grid-cols-2 gap-2">
+
+                                { content.images.img2 && (
+                                    <img
+                                        src={content.images.img2}
+                                        alt="img2"
+                                        width={437}
+                                        height={437}
+                                        className="object-cover h-full w-full rounded-2xl"
+                                    />
+                                )}
+                                <div className="bg-yellowLight rounded-2xl rounded-tr-[200px] " />
+                            </div>
+
+                            { content.images.img3 && (
+                                <img
+                                    src={content.images.img3}
+                                    alt="img3"
+                                    width={374}
+                                    height={392}
+                                    className="object-cover h-full w-full rounded-2xl"
+                                />
+                            )}
+
+                        </div> 
 
                     </div>
 
-                    <div className="lg:w-6/12 space-y-2 scale-75">
+                    <div className="flex space-x-2">
 
-                        <div className="flex space-x-2 items-stretch">
+                        <div className="w-4/12">
 
-                            <div className="w-8/12">
+                            <div className="grid grid-cols-2 gap-2">
 
-                                { content.images.img1 && (
+                                <div className="bg-greenLight rounded-2xl rounded-bl-[200px]"/>
+                                { content.images.img4 && (
                                     <img
-                                        src={content.images.img1}
-                                        alt="img1"
-                                        width={397}
-                                        height={406}
-                                        className="object-cover h-full w-full rounded-2xl "
-                                    />
-                                )}
-
-                            </div>
-
-                            <div className="w-4/12 self-end space-y-2">
-
-                                <div className="grid grid-cols-2 gap-2">
-
-                                    { content.images.img2 && (
-                                        <img
-                                            src={content.images.img2}
-                                            alt="img2"
-                                            width={437}
-                                            height={437}
-                                            className="object-cover h-full w-full rounded-2xl"
-                                        />
-                                    )}
-                                    <div className="bg-yellowLight rounded-2xl rounded-tr-[200px] " />
-                                </div>
-
-                                { content.images.img3 && (
-                                    <img
-                                        src={content.images.img3}
-                                        alt="img3"
-                                        width={374}
-                                        height={392}
+                                        src={content.images.img4}
+                                        alt="img4"
+                                        width={394}
+                                        height={394}
                                         className="object-cover h-full w-full rounded-2xl"
                                     />
                                 )}
 
-                            </div> 
+                            </div>
 
                         </div>
 
-                        <div className="flex space-x-2">
+                        <div className="w-5/12">
 
-                            <div className="w-4/12">
-
-                                <div className="grid grid-cols-2 gap-2">
-
-                                    <div className="bg-greenLight rounded-2xl rounded-bl-[200px]"/>
-                                    { content.images.img4 && (
-                                        <img
-                                            src={content.images.img4}
-                                            alt="img4"
-                                            width={394}
-                                            height={394}
-                                            className="object-cover h-full w-full rounded-2xl"
-                                        />
-                                    )}
-
-                                </div>
-
-                            </div>
-
-                            <div className="w-5/12">
-
-                                { content.images.img5 && (
-                                    <img
-                                        src={content.images.img5}
-                                        alt="img5"
-                                        width={397}
-                                        height={406}
-                                        className="object-cover h-full w-full rounded-2xl"
-                                    />
-                                )}
-
-                            </div>
+                            { content.images.img5 && (
+                                <img
+                                    src={content.images.img5}
+                                    alt="img5"
+                                    width={397}
+                                    height={406}
+                                    className="object-cover h-full w-full rounded-2xl"
+                                />
+                            )}
 
                         </div>
 
@@ -156,9 +152,10 @@ const Home = () => {
                 </div>
 
             </div>
-            
-        </section>
-    </header>
+
+        </div>
+        
+    </section>
   );
 }
 

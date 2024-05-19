@@ -1,7 +1,112 @@
+import { useState } from "react";
+// import emailJS from '@emailjs/browser'
+
+// interface FormProps {
+//     sendEmail: (data: FormData) => void;
+// }
+  
+interface FormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}
+
 const Contact = () => {
+    const [formData, setFormData] = useState<FormData>({ name: '', email: '',subject:'', message:''});
+    const [errors, setErrors] = useState<FormData>({ name: '', email: '',subject:'', message:''});
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const validateEmail = (email: string) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+        
+
+    }
+
+    const handleFormSubmit = async(event: React.SyntheticEvent<HTMLFormElement>) =>{
+        event.preventDefault();
+
+        try {
+            setIsSubmitting(true);
+            const errors = { name: '', email: '',subject:'', message:''};
+            if (formData.name === '') {
+                errors.name = 'Name is required';
+            }
+        
+            if (formData.email === '' || !validateEmail(formData.email)) {
+                errors.email = 'Valid email is required';
+            }
+
+            if (formData.subject === '') {
+                errors.subject = 'Subject is required';
+            }
+
+            if (formData.message === '') {
+                errors.message = 'Message is required';
+            }
+        
+            setErrors(errors);
+
+            const data = {
+                service_id: 'service_w34fzno',
+                template_id: 'template_w3drny8',
+                user_id: 'RxRUNK7pj_qOjv4fV',
+                template_params: formData
+            };
+            if (!errors.name && !errors.email && !errors.subject && !errors.message) {
+
+                await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                setFormData({ name: '', email: '',subject:'', message:''})
+                setIsSuccess(true);
+
+                setTimeout(() => {
+                    setIsSuccess(false);
+                }, 2000);
+
+            }
+            
+        } catch (error) {
+            
+            setIsError(true);
+
+            setTimeout(() => {
+                setIsError(false);
+            }, 2000);
+
+        } finally {
+
+            setIsSubmitting(false);
+
+        }
+
+        // emailJS.sendForm('serviceID','templateID', event.target,'public_key')
+    }
+    // const sendEmail = (formData : FormProps) => {   
+    //     console.log(formData)
+    // }
+
   return (
     
-    <section className="mt-6 bg-light py-16 px-4" id="contact">
+    <section data-section className="mt-6 bg-light py-16 px-4" id="contact">
 
         <div className="max-w-6xl mx-auto bg-white border rounded-2xl shadow-lg bg-gradient-to-r from-greenLight to-secondary">
 
@@ -37,7 +142,7 @@ const Contact = () => {
 
                                 </div>
 
-                                <a href="javascript:void(0)" className="text-primary text-sm ml-3">
+                                <a href="#" className="text-primary text-sm ml-3">
                                     <small className="block">Mail</small>
                                     <strong className="tracking-wider">info@ramsolutions.com</strong>
                                 </a>
@@ -46,12 +151,12 @@ const Contact = () => {
                         </ul>
 
                     </div>
-                    
+
                     <div className="mt-12">
                         <h2 className="font-semibold text-xl text-primary">Socials</h2>
                         <ul className="flex mt-3 space-x-4">
                             <li className="bg-gray-100 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                <a href="javascript:void(0)">
+                                <a href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#1D5B79'
                                         viewBox="0 0 24 24">
                                         <path
@@ -61,7 +166,7 @@ const Contact = () => {
                                 </a>
                             </li>
                             <li className="bg-gray-100 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                <a href="javascript:void(0)">
+                                <a href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#1D5B79'
                                         viewBox="0 0 511 512">
                                         <path
@@ -71,7 +176,7 @@ const Contact = () => {
                                 </a>
                             </li>
                             <li className="bg-gray-100 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                <a href="javascript:void(0)">
+                                <a href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#1D5B79'
                                         viewBox="0 0 24 24">
                                         <path
@@ -85,17 +190,48 @@ const Contact = () => {
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
 
-                    <form className="ml-auo space-y-4">
-                        <input type='text' placeholder='Name'
+                    {isSuccess && (
+                        <div className={`mb-3 bg-green-100 text-green-800 pl-4 pr-10 py-4 rounded-md relative`} >
+                            <strong className="font-bold text-base">Thank you!</strong>
+                            <span className="block text-sm sm:inline max-sm:mt-1 max-sm:ml-0 mx-4">
+                                We've received your message. Someone from our team will contact you soon.
+                            </span>
+                        </div>
+                    )} 
+
+                    {isError && (
+                        <div className={`mb-3 bg-red-100 text-red-800 pl-4 pr-10 py-4 rounded-md relative`} >
+                            <strong className="font-bold text-base">Oops!</strong>
+                            <span className="block text-sm sm:inline max-sm:mt-1 max-sm:ml-0 mx-4">
+                                Something went wrong. Please try again.
+                            </span>
+                        </div>
+                    )}
+
+                    <form className="ml-auo space-y-4" onSubmit={handleFormSubmit}>
+                        <input type='text' name="name" placeholder='Name'
+                            onChange={handleInputChange}
+                            value={formData.name}
                             className="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]" />
-                        <input type='email' placeholder='Email'
+                            {errors.name && <p className="text-sm text-red-400">{errors.name}</p>}
+                        <input type='email' name="email" placeholder='Email'
+                            onChange={handleInputChange}
+                            value={formData.email}
                             className="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]" />
-                        <input type='text' placeholder='Subject'
+                            {errors.email && <p className="text-sm text-red-400">{errors.email}</p>}
+                        <input type='text' name="subject" placeholder='Subject'
+                            onChange={handleInputChange}
+                            value={formData.subject}
                             className="w-full rounded-md py-2.5 px-4 border text-sm outline-[#007bff]" />
-                        <textarea placeholder='Message'
+                            {errors.subject && <p className="text-sm text-red-400">{errors.subject}</p>}
+                        <textarea name="message" placeholder='Message'
+                            onChange={handleTextAreaChange}
+                            value={formData.message}
                             className="w-full rounded-md px-4 h-32 border text-sm pt-2.5 outline-[#007bff]"></textarea>
-                        <button type='button'
-                            className="text-white bg-[#007bff] hover:bg-blue-600 font-semibold rounded-md text-sm px-4 py-2.5 w-full">Send</button>
+                            {errors.message && <p className="text-sm text-red-400">{errors.message}</p>}
+                        <button type='submit'
+                            disabled={isSubmitting}
+                            className="text-white bg-[#007bff] hover:bg-blue-600 font-semibold rounded-md text-sm px-4 py-2.5 w-full">{isSubmitting ? 'Sending...' : 'Send'}</button>
                     </form>
                 </div>
             </div>

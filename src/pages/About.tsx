@@ -10,7 +10,7 @@ const content = {
 }
 const About = () => {
   return (
-    <section className="text-body container max-md:max-w-md mx-auto px-4 py-6" id='about'>
+    <section data-section className="text-body container max-md:max-w-md mx-auto px-4 py-6" id='about'>
         <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6">
             <div className="max-md:order-1 max-md:text-center z-50 relative">
 
@@ -53,7 +53,7 @@ const About = () => {
             <div className='flex flex-row w-5/6'>
                 <div className="relative sm:h-[400px] sm:w-[400px] max-md:before:hidden before:absolute before:bg-yellowLight before:h-[110%] before:w-[120%] before:right-0 before:z-0 before:shadow-md mx-auto">
                     
-                    <img src="/image13.webp" className="rounded-3xl lg:w-4/5 z-50 relative" alt="about us" />
+                    <img src="/image13.webp" className="rounded-3xl lg:w-4/5 z-10 relative" alt="about us" />
                     
                 </div>
                 <div className='flex flex-col justify-between'>

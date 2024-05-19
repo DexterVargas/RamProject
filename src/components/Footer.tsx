@@ -1,5 +1,59 @@
 import { pageTitle } from "../constants"
 
+
+function AtSymbolIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 text-secondary"
+        >
+            <path
+                strokeLinecap="round"
+                d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
+            />
+        </svg>
+    );
+}
+
+function PhoneIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 text-secondary"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+            />
+        </svg>
+    );
+}
+
+function MapPinIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 text-secondary"
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
+    );
+}
+
 const Footer = () => {
   return (
     
@@ -16,25 +70,25 @@ const Footer = () => {
             <div className="lg:flex lg:items-center">
             <ul className="flex space-x-6">
                 <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" className="fill-gray-300 hover:fill-white w-7 h-7" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
+                    <path fillRule="evenodd"
                         d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7h-2v-3h2V8.5A3.5 3.5 0 0 1 15.5 5H18v3h-2a1 1 0 0 0-1 1v2h3v3h-3v7h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"
-                        clip-rule="evenodd" />
+                        />
                     </svg>
                 </a>
                 </li>
                 <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" className="fill-gray-300 hover:fill-white w-7 h-7" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
+                    <path fillRule="evenodd"
                         d="M21 5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5zm-2.5 8.2v5.3h-2.79v-4.93a1.4 1.4 0 0 0-1.4-1.4c-.77 0-1.39.63-1.39 1.4v4.93h-2.79v-8.37h2.79v1.11c.48-.78 1.47-1.3 2.32-1.3 1.8 0 3.26 1.46 3.26 3.26zM6.88 8.56a1.686 1.686 0 0 0 0-3.37 1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 1.57v8.37H5.5v-8.37h2.77z"
-                        clip-rule="evenodd" />
+                        />
                     </svg>
                 </a>
                 </li>
                 <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="fill-gray-300 hover:fill-white w-7 h-7"
                     viewBox="0 0 24 24">
                     <path
@@ -48,14 +102,24 @@ const Footer = () => {
             <div>
             <h4 className="text-lg font-semibold mb-6 text-white">Contact Us</h4>
             <ul className="space-y-4 text-gray-300">
-                <li>
-                    <b className="text-white">Email:</b>{' '}myemail-here2024@solutions.com 
+                <li className="flex items-start space-x-3 mb-5">
+                    <AtSymbolIcon/>
+                    <div>
+                        <span className="hover:text-white text-sm">myemailhere2024@solutions.com</span>
+                    </div>
                 </li>
-                <li>
-                    <b className="text-white">Phone:</b>{' '}+6301234567845
+                <li className="flex items-start space-x-3 mb-5">
+                    <PhoneIcon/>
+                    <div>
+                        <span className="hover:text-white text-sm">+6301234567845</span>
+                    </div>
                 </li>
-                <li>
-                    <b className="text-white">Address:</b>{' '}UBT, BGC, Taguig City, Manila PHL
+                <li className="flex items-start space-x-3 mb-5">
+                    <MapPinIcon/>
+                    <div>
+                        <span className="hover:text-white text-sm">Taguig City, Manila PHL</span>
+                    </div>
+                    
                 </li>
             </ul>
             </div>
@@ -64,13 +128,14 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6 text-white">Information</h4>
             <ul className="space-y-4">
                 <li>
+                    
                 <a href="#about" className="text-gray-300 hover:text-white text-sm">About Us</a>
                 </li>
                 <li>
-                <a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">Terms &amp; Conditions</a>
+                <a href="#" className="text-gray-300 hover:text-white text-sm">Terms &amp; Conditions</a>
                 </li>
                 <li>
-                <a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">Privacy Policy</a>
+                <a href="#" className="text-gray-300 hover:text-white text-sm">Privacy Policy</a>
                 </li>
             </ul>
             </div>

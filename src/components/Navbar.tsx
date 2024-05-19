@@ -18,6 +18,8 @@ const Navbar = () => {
 
     const activeLocation = location.hash;
 
+    // const sectionRef = useRef<HTMLDivElement | null>(null);
+
     const [activeName, setActiveName] = useState(activeLocation.substring(1));
     const [toggle, setToggle] = useState<boolean>(false)
 
@@ -27,7 +29,6 @@ const Navbar = () => {
     });
 
     const handleToggleSelection = (id:string) => {
-        console.log(id)
         setActiveName(id);
         setToggle(!toggle);
     }
@@ -40,9 +41,11 @@ const Navbar = () => {
             });
         }
     };
+
     // * effects
     useEffect(() => {
         if (dimensions.width > 1024 && toggle) setToggle(false);
+
         window.addEventListener("resize", handleResize);
 
         return () => {
@@ -53,113 +56,156 @@ const Navbar = () => {
 
 
     //BACK TO BUTTON
-      
-  const [showButton, setShowButton] = useState(false);
+    const [showButton, setShowButton] = useState(false);
 
-  const handleScroll = () => {
+    const handleScroll = () => {
+        //Show/hide BackToTop button
+        if ( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ) {
+            setShowButton(true);
+        } else {
+            setShowButton(false); 
+        }
 
-    if ( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ) {
-      setShowButton(true);
-    } else {
-      setShowButton(false);
-    }
+        // Highligh active in hamburger button
+        function isElementInViewport(el: HTMLElement) {
+            const rect = el.getBoundingClientRect()
+            const offsetTop = el.offsetTop;
+            const offsetBottom = offsetTop + rect.height;
+            const scrollPosition = window.scrollY;
+            return (
+                scrollPosition > offsetTop &&
+                scrollPosition < offsetBottom
+            )
+          }
 
-  };
-
-  const backToTop = () => {
-    document.documentElement.style.scrollBehavior = "smooth";
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    setActiveName('/');
-
-    if(location.hash) {
-        window.history.replaceState("", document.title, location.pathname);
-    }
-
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+        const sections = document.querySelectorAll('[data-section]')
+        sections.forEach(section => {
+          if (isElementInViewport(section as HTMLElement)) {
+            setActiveName(() => section.id)
+          }
+        })
     };
-  }, []);
+
+    useEffect(() => {
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
 
     // **Render
     return (
-        <nav id='/'>
-            <div className="py-7 text-lg">
-                <div className="container px-4 mx-auto">
-                    <div className="flex justify-between items-center">
-                    <div className="flex items-center flex-shrink-0 text-primary mr-6">
-                        <a href="/" title={`Welcome to ${pageTitle.subTitle}`} className='inline-flex'>
-                          <img src='ram.svg' alt={pageTitle.title} className='h-8'/>
-                            <span className="font-bold text-2xl tracking-tight font-['Caveat']">{pageTitle.title}</span>  
-                        </a>
-                        
-                    </div>
-                        
-                        <div className="hidden lg:block text-center">
-                            <ul className='flex space-x-7'>
-                                {navLinks.map((item) => (
-                                <li key={item.id}>
-                                    <a
-                                        href={`#${item.id}`}
-                                        className={`relative group flex items-center py-2 duration-300 transition-all ease-in-out hover:text-indigo-600 ${ activeName === item.id ? 'text-indigo-600': ''}`}
-                                        onClick={()=>{setActiveName(item.id)}}
-                                    >
-                                        <span className="">{item.title}</span>
-                                        <span className={`absolute bottom-0 left-0 h-0.5 bg-indigo-600 group-hover:w-full group-hover:transition-all group-hover:ease-in-out ${ activeName === item.id ? 'w-full ease-in-out transition-all': 'w-0'}`}></span>
-                                    </a>
-                                </li>        
-                                ))}
-                            </ul>    
+        // sticky top-0 backdrop-blur-md bg-opacity-70 z-50
+        <header id='home' className='bg-white bg-opacity-90 z-50'>
+            <nav id='/' className=''>
+                <div className={`py-4 text-lg w-full z-50 ${showButton ? 'shadow-md':''}`}>
+                    <div className="container px-4 mx-auto z-9999">
+                        <div className="flex justify-between items-center">
+                        <div className="flex items-center flex-shrink-0 text-primary mr-6">
+                            <a href="/" title={`Welcome to ${pageTitle.subTitle}`} className='inline-flex'>
+                            <img src='ram.svg' alt={pageTitle.title} className='h-8'/>
+                                <span className="font-bold text-2xl tracking-tight font-['Caveat']">{pageTitle.title}</span>  
+                            </a>
+                            
                         </div>
-                        <button className="lg:hidden" onClick={()=>setToggle(!toggle)}>
-                            <BurgerIcon />
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            {/*  Mobile menu */}
-            {!!toggle && (
-                <div className="">
-                    <div className="h-screen w-screen z-[999] top-0 fixed bg-black/50" onClick={()=>setToggle(!toggle)}>
-                    </div>
-                    <div className="bg-white w-[380px] top-0 right-0 z-[999] h-screen fixed animate-slide-in-right">
-                        <div className="h-14 px-10 border-b flex items-center">
-                            <button className="flex items-center space-x-1" onClick={()=>setToggle(!toggle)}>
-                                <XMarkIcon />
-                                <span>Close</span>
+                            
+                            <div className="hidden lg:block text-center">
+                                <ul className='flex space-x-7 cursor-pointer' onClick={(event: React.SyntheticEvent) => {
+                                    event.preventDefault();
+                                    const target = event.target as HTMLSpanElement;
+                                    const id = target.getAttribute('href-data')?.replace('#', '');
+                                    const element = document.getElementById(String(id));
+                                    element?.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                    });
+                                }}>
+                                    {navLinks.map((item) => (
+                                    <li key={item.id}>
+                                        <a  href-data={`#${item.id}`}
+                                            className={`relative group flex items-center py-2 duration-300 transition-all ease-in-out hover:text-indigo-600 ${ activeName === item.id ? 'text-indigo-600': ''}`}
+                                            
+                                        >
+                                            <span href-data={`#${item.id}`} className="">{item.title}</span>
+                                            <span href-data={`#${item.id}`} className={`absolute bottom-0 left-0 h-0.5 bg-indigo-600 group-hover:w-full group-hover:transition-all group-hover:ease-in-out ${ activeName === item.id ? 'w-full ease-in-out transition-all': 'w-0'}`}></span>
+                                        </a>
+                                    </li>        
+                                    ))}
+                                </ul>    
+                            </div>
+                            <button className="lg:hidden" onClick={()=>setToggle(!toggle)}>
+                                <BurgerIcon />
                             </button>
                         </div>
-                        <div className="h-full py-3 pb-20 overflow-y-scroll scroll-smooth">
-                            <ul className="py-2 mb-7">
-                                {navLinks.map((item) => (
-                                    <li key={item.title} className={`px-10 hover:bg-indigo-50 hover:text-indigo-600 ${ activeName === item.id ? 'bg-indigo-50 text-indigo-600': ''}`}>
-                                        <a 
-                                            href={`#${item.id}`} 
-                                            className="flex items-center px-4 py-2"
-                                            onClick={()=>{handleToggleSelection(item.id)}}>
-
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
                     </div>
                 </div>
-            )}
+                
+                {/*  Mobile menu */}
+                {!!toggle && (
+                    <div className="">
+                        <div className="h-screen w-screen z-[999] top-0 fixed bg-black/50" onClick={()=>setToggle(!toggle)}>
+                        </div>
+                        <div className="bg-white w-[380px] top-0 right-0 z-[999] h-screen fixed animate-slide-in-right">
+                            <div className="h-14 px-10 border-b flex items-center">
+                                <button className="flex items-center space-x-1" onClick={()=>setToggle(!toggle)}>
+                                    <XMarkIcon />
+                                    <span>Close</span>
+                                </button>
+                            </div>
+                            <div className="h-full py-3 pb-20 overflow-y-scroll scroll-smooth">
+                                <ul className="py-2 mb-7" onClick={(event: React.SyntheticEvent) => {
+                                    event.preventDefault();
+                                    const target = event.target as HTMLSpanElement;
+                                    const id = target.getAttribute('href-data')?.replace('#', '');
+                                    const element = document.getElementById(String(id));
+                                    element?.scrollIntoView({
+                                    behavior: 'smooth'
+                                    });
+                                }}>
+                                    {navLinks.map((item) => (
+                                        <li key={item.title} className={`px-10 hover:bg-indigo-50 hover:text-indigo-600 ${ activeName === item.id ? 'bg-indigo-50 text-indigo-600': ''}`}>
+                                            <a 
+                                                href-data={`#${item.id}`} 
+                                                className="flex items-center px-4 py-2"
+                                                onClick={()=>{handleToggleSelection(item.id)}}>
 
-            {/* <!-- Back to top button --> */}
+                                                <span href-data={`#${item.id}`}>{item.title}</span>
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                
+            </nav>
+            {/* <!-- Back to top button backToTop--> */}
             {showButton && (
             <div className="bg-light">
                 <button
                 type="button"
-                onClick={backToTop}
+                onClick={() => {
+                    // Basic jumping to the top of the page
+                    // Note: the x value is 0 here
+                    // window.scroll(0, 0);
+          
+                    // Jumping to the top of the page with smooth scrolling
+                    window.scroll({
+                      top: 0,
+                      behavior: 'smooth'
+                    });
+
+                    // Set URL to orig
+                    setActiveName('/');
+                    // Remove hash(#...) if currert url have
+                    if(location.hash) {
+                        window.history.replaceState("", document.title, location.pathname);
+                    }
+                  }}
                 className={` ${
                     showButton ? `inline-block` : `hidden`
                 } fixed bottom-[40px] right-[40px] p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out`}
@@ -180,7 +226,7 @@ const Navbar = () => {
                     </svg>
                 </button>
             </div>)}
-        </nav>
+        </header>
     )
 }
 

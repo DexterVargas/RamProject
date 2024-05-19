@@ -52,7 +52,7 @@ const content = {
 
 const Services = () => {
     return (
-        <section className="py-6 bg-light overflow-x-hidden" id="services">
+        <section data-section className="py-6 bg-light overflow-x-hidden" id="services">
 
             <div className="container px-4 mx-auto">
 
