@@ -55,7 +55,7 @@ const Testimonials = () => {
                     />
                     { content.testimonials.map((testimonial, idx) => (
 
-                        <div key={idx} className={`bg-white p-7 rounded-lg shadow-md w-full ${idx === 1 ? "p-6 relative lg:left-12" : ""}`}>
+                        <div key={idx} className={`bg-white p-7 rounded-lg shadow-md w-full ${idx === 1 ? "p-6 relative z-10 lg:left-12" : ""}`}>
                             <div className="flex space-x-4 items-center mb-4">
                                 <div className="relative">
                                     <img
