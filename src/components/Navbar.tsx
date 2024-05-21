@@ -33,6 +33,17 @@ const Navbar = () => {
         setToggle(!toggle);
     }
 
+    const handleSelectMenu = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        const target = event.target as HTMLSpanElement;
+        const id = target.getAttribute('href-data')?.replace('#', '');
+        const element = document.getElementById(String(id));
+        element?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+        });
+        setActiveName(String(id));
+    }
     const handleResize = () => {
         if (typeof window !== "undefined") {
             setDimensions({
@@ -68,20 +79,22 @@ const Navbar = () => {
 
         // Highligh active in hamburger button
         function isElementInViewport(el: HTMLElement) {
+            // console.log(document.getElementById('navbar')?.clientHeight)
             const rect = el.getBoundingClientRect()
             const offsetTop = el.offsetTop;
             const offsetBottom = offsetTop + rect.height;
-            const scrollPosition = window.scrollY;
+            const scrollPosition = window.scrollY + 77; 
+
             return (
-                scrollPosition > offsetTop &&
-                scrollPosition < offsetBottom
+                scrollPosition >= offsetTop &&
+                scrollPosition <= offsetBottom
             )
           }
 
         const sections = document.querySelectorAll('[data-section]')
         sections.forEach(section => {
           if (isElementInViewport(section as HTMLElement)) {
-            setActiveName(() => section.id)
+            setActiveName(section.id)
           }
         })
     };
@@ -97,39 +110,30 @@ const Navbar = () => {
 
     // **Render
     return (
-        // sticky top-0 backdrop-blur-md bg-opacity-70 z-50
-        <header id='home' className='bg-white bg-opacity-90 z-50'>
+        //  backdrop-blur-md bg-opacity-70 z-50
+        <header id='navbar' className='sticky top-0 bg-white z-50'>
             <nav id='/' className=''>
                 <div className={`py-4 text-lg w-full z-50 ${showButton ? 'shadow-md':''}`}>
-                    <div className="container px-4 mx-auto z-9999">
+                    <div className="container px-4 mx-auto z-50">
                         <div className="flex justify-between items-center">
                         <div className="flex items-center flex-shrink-0 text-primary mr-6">
                             <a href="/" title={`Welcome to ${pageTitle.subTitle}`} className='inline-flex'>
                             <img src='ram.svg' alt={pageTitle.title} className='h-8'/>
-                                <span className="font-bold text-2xl tracking-tight font-['Caveat']">{pageTitle.title}</span>  
+                                <span className="font-bold text-2xl tracking-tighter">{pageTitle.title}</span>  
                             </a>
                             
                         </div>
                             
                             <div className="hidden lg:block text-center">
-                                <ul className='flex space-x-7 cursor-pointer' onClick={(event: React.SyntheticEvent) => {
-                                    event.preventDefault();
-                                    const target = event.target as HTMLSpanElement;
-                                    const id = target.getAttribute('href-data')?.replace('#', '');
-                                    const element = document.getElementById(String(id));
-                                    element?.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                    });
-                                }}>
+                                <ul className='flex space-x-7 cursor-pointer font-normal text-body' onClick={handleSelectMenu}>
                                     {navLinks.map((item) => (
                                     <li key={item.id}>
                                         <a  href-data={`#${item.id}`}
-                                            className={`relative group flex items-center py-2 duration-300 transition-all ease-in-out hover:text-indigo-600 ${ activeName === item.id ? 'text-indigo-600': ''}`}
+                                            className={`relative group flex items-center py-2 duration-300 transition-all ease-in-out hover:text-primary/80 ${ activeName === item.id ? 'text-primary': 'text-body/50 font-light'}`}
                                             
                                         >
                                             <span href-data={`#${item.id}`} className="">{item.title}</span>
-                                            <span href-data={`#${item.id}`} className={`absolute bottom-0 left-0 h-0.5 bg-indigo-600 group-hover:w-full group-hover:transition-all group-hover:ease-in-out ${ activeName === item.id ? 'w-full ease-in-out transition-all': 'w-0'}`}></span>
+                                            <span href-data={`#${item.id}`} className={`absolute bottom-0 left-0 h-0.5 bg-primary group-hover:w-full group-hover:transition-all group-hover:ease-in-out ${ activeName === item.id ? 'w-full ease-in-out transition-all': 'w-0'}`}></span>
                                         </a>
                                     </li>        
                                     ))}
@@ -165,7 +169,7 @@ const Navbar = () => {
                                     });
                                 }}>
                                     {navLinks.map((item) => (
-                                        <li key={item.title} className={`px-10 hover:bg-indigo-50 hover:text-indigo-600 ${ activeName === item.id ? 'bg-indigo-50 text-indigo-600': ''}`}>
+                                        <li key={item.title} className={`px-10 hover:bg-indigo-50  hover:text-primary/80 ${ activeName === item.id ? 'text-primary': 'text-body/50 font-light'}`}>
                                             <a 
                                                 href-data={`#${item.id}`} 
                                                 className="flex items-center px-4 py-2"

@@ -39,7 +39,7 @@ export const navLinks:Links[] = [
 ];
 
 export const pageTitle = {
-    title : 'RAM Solutions',
-    subTitle: 'RAM Virtual Solutions',
+    title : 'KreiFos',
+    subTitle: 'KreiFos Business Solutions',
     otherTitle: ''
 }

@@ -89,7 +89,7 @@ const style = "flex justify-center items-center";
 const Clients = () => {
   return (
     <>
-    <section data-section className="py-6 bg-light overflow-x-hidden px-4 scoll-pt-16" id="client">
+    <section data-section className="bg-light py-16 px-4 scroll-mt-[76px]" id="client">
         <div className="container max-md:max-w-md mx-auto ">    
             <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6">
                 <div className="max-md:order-1 max-md:text-center">

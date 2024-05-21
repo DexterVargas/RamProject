@@ -108,7 +108,7 @@ const Contact = () => {
 
   return (
     
-    <section data-section className="mt-6 bg-light py-16 px-4" id="contact">
+    <section data-section className="scroll-mt-[76px] bg-light py-16 px-4" id="contact">
 
         <div className="max-w-6xl mx-auto bg-white border rounded-2xl shadow-lg bg-gradient-to-r from-greenLight to-secondary">
 

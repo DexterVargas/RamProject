@@ -70,7 +70,7 @@ const hiring = [
 const Careers = () => {
     return (
         
-        <section data-section className="px-4 py-16" id="careers">
+        <section data-section className="scroll-mt-[76px] px-4 py-16" id="careers">
             <div className="bg-white container mx-auto rounded-lg shadow">
                 <div className="p-6 border-b border-gray-300 text-center">
                     <Heading text={content.text.subTitle} />

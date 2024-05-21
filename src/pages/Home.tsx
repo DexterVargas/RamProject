@@ -21,7 +21,7 @@ const content = {
 
 const Home = () => {
   return (
-    <section data-section className="pt-6 " id='home'>
+    <section data-section className="scroll-mt-[76px] pt-6 " id='home'>
 
         <div className="container px-4 mx-auto">
 

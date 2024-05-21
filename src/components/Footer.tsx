@@ -62,7 +62,7 @@ const Footer = () => {
             <div className="flex items-center flex-shrink-0 text-white mr-6">
                 <a href="/" title={`Welcome to ${pageTitle.subTitle}`} className='inline-flex items-center'>
                     <img src='ram.svg' alt={pageTitle.title} className='w-24'/>
-                    <span className="font-bold text-3xl tracking-tight font-['Caveat']">{pageTitle.title}</span>  
+                    <span className="font-bold text-4xl tracking-tighter">{pageTitle.title}</span>  
                 </a>
                 
             </div>
