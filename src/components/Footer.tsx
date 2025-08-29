@@ -1,5 +1,5 @@
 import { pageTitle } from "../constants"
-
+import Logo from "../assets/logolight.png";
 
 function AtSymbolIcon() {
     return (
@@ -140,9 +140,26 @@ const Footer = () => {
             </ul>
             </div>
         </div>
-        <p className="text-gray-300 text-sm mt-10">© {new Date().getFullYear()}<a href='#home' target='_blank'
-            className="hover:underline mx-1">{pageTitle.title}</a>All Rights Reserved.
-        </p>
+        
+        <div className="flex items-center justify-between gap-3">
+            <p className="text-gray-300 text-sm mt-10">© {new Date().getFullYear()}<a href='#home' target='_blank'
+                className="hover:underline mx-1">{pageTitle.title}</a>All Rights Reserved.
+            </p>
+            <div className="flex items-center text-gray-300 text-sm mt-10 mr-20 gap-3">
+                <div className="h-12 w-12 overflow-hidden rounded-full border border-gray-700">
+                     
+                <img
+                src={Logo}
+                alt="Dexter Vargas Logo"
+                className="h-full w-full object-cover"
+                />
+                </div>
+                Developed by:
+                <span className="font-semibold tracking-wide font-mono">
+                <a href="https://dextervargas-my-portfolio-for-verce.vercel.app/" className="hover:text-blue-300" target="_blank" rel="noopener noreferrer">{"{ "}Dexter Vargas{" }"}</a>
+                </span>
+            </div>
+        </div>
     </footer>
 
   )
